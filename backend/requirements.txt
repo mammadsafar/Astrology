@@ -1,0 +1,37 @@
+#  general moduls
+django >4.0
+
+
+python-decouple
+Pillow
+djangorestframework
+
+# third party modules
+markdown
+django-filter
+drf-yasg
+
+# deployment modules
+
+coreapi
+
+djangorestframework-simplejwt
+rest_framework_simplejwt
+
+# email third party modules
+django-mail-templated
+# djozer
+
+#  refactoring and test
+flake8
+black
+
+
+# Chat app, Channels
+daphne
+asgi-tools
+channels
+channels_redis
+
+django-ckeditor
+django-jazzmin

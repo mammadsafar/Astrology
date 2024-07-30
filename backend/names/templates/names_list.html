@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انتخاب اسم</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+body {
+  background: #fafbfb;
+}
+
+
+/* FOOTER STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-footer {
+  position: fixed;
+  right: 0;
+  bottom: 50px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  z-index: 1;
+}
+
+.page-footer a {
+  display: flex;
+  margin-left: 4px;
+}
+
+.table__head{
+color: #FFF;
+font-weight: 700;
+background: #9b4085;
+background: -moz-linear-gradient(-45deg, #9b4085 0%, #608590 100%);
+background: -webkit-linear-gradient(-45deg, #9b4085 0%,#608590 100%);
+background: linear-gradient(135deg, #9b4085 0%,#608590 100%);
+white-space: nowrap;
+}
+.table-bordered td, .table-bordered th{
+border: 0px solid #FFF;
+}
+.coin {
+width:8%;
+margin-left: 5px;
+-webkit-animation:spin 4s linear infinite;
+-moz-animation:spin 4s linear infinite;
+animation:spin 4s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.winner__table{
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 567px) {
+
+    .winner__table{
+    font-size: 12px;
+    }
+    .coin {
+    width:15%;
+    margin-left:2px;
+    }
+}
+
+</style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            <form action="{% url 'names_list' %}" method="get">
+              <div class="row g-3 d-flex justify-content-around">
+                <div class="col-3">
+                  <label for="desteni_number" class="form-label">عدد تقدیر</label>
+                  <select class="form-control" id="desteni_number" name="desteni_number">
+                    <option selected>انتخاب کنید</option>
+                    <option value="1" {% if desteni_number == '1' %} selected {% endif %}>1</option>
+                    <option value="2" {% if desteni_number == '2' %} selected {% endif %}>2</option>
+                    <option value="3" {% if desteni_number == '3' %} selected {% endif %}>3</option>
+                    <option value="4" {% if desteni_number == '4' %} selected {% endif %}>4</option>
+                    <option value="5" {% if desteni_number == '5' %} selected {% endif %}>5</option>
+                    <option value="6" {% if desteni_number == '6' %} selected {% endif %}>6</option>
+                    <option value="7" {% if desteni_number == '7' %} selected {% endif %}>7</option>
+                    <option value="8" {% if desteni_number == '8' %} selected {% endif %}>8</option>
+                    <option value="9" {% if desteni_number == '9' %} selected {% endif %}>9</option>
+                    <option value="11" {% if desteni_number == '11' %} selected {% endif %}>11</option>
+                    <option value="22" {% if desteni_number == '22' %} selected {% endif %}>22</option>
+                    <option value="33" {% if desteni_number == '33' %} selected {% endif %}>33</option>
+                </select>
+                </div>
+                <div class="col-3">
+                  <label for="motivation_number" class="form-label">عدد روح</label>
+                  <select class="form-control" id="motivation_number" name="motivation_number">
+                    <option selected>انتخاب کنید</option>
+                    <option value="1" {% if motivation_number == '1' %} selected {% endif %}>1</option>
+                    <option value="2" {% if motivation_number == '2' %} selected {% endif %}>2</option>
+                    <option value="3" {% if motivation_number == '3' %} selected {% endif %}>3</option>
+                    <option value="4" {% if motivation_number == '4' %} selected {% endif %}>4</option>
+                    <option value="5" {% if motivation_number == '5' %} selected {% endif %}>5</option>
+                    <option value="6" {% if motivation_number == '6' %} selected {% endif %}>6</option>
+                    <option value="7" {% if motivation_number == '7' %} selected {% endif %}>7</option>
+                    <option value="8" {% if motivation_number == '8' %} selected {% endif %}>8</option>
+                    <option value="9" {% if motivation_number == '9' %} selected {% endif %}>9</option>
+                    <option value="11" {% if motivation_number == '11' %} selected {% endif %}>11</option>
+                    <option value="22" {% if motivation_number == '22' %} selected {% endif %}>22</option>
+                    <option value="33" {% if motivation_number == '33' %} selected {% endif %}>33</option>
+                </select>
+                </div>
+                <div class="col-3">
+                  <label for="gender" class="form-label">جنسیت</label>
+                  <select class="form-control" id="gender" name="gender">
+                    <option selected>انتخاب کنید</option>
+                    <option value="boy" {% if gender == 'boy' %} selected {% endif %}>پسر</option>
+                    <option value="girl" {% if gender == 'girl' %} selected {% endif %}>دختر</option>
+                </select>
+                </div>
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <button data-res="<?php echo $sum; ?>" type="submit" class="btn btn-dark w-100 fw-bold" >Send</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <div class="container">
+      <div class="table-responsive">
+      <table class="table table-bordered   table-striped" style="margin-top:100px">
+        <thead class="table__head">
+          <tr class="winner__table">
+            <th>نام</th>
+            <th>نام فارسی</th>
+            <!-- <th>جنسیت</th> -->
+            <th>زبان</th>
+            <th>معنی</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for name in results %}
+            <tr class="winner__table">
+                <td>{{ name.name }}</td>
+                <td>
+                    {% if not name.persian_name %}
+                    -
+                    {% else %}
+                    {{ name.persian_name }}
+                    {% endif %}
+                </td>
+                <!-- <td>{{ name.gender }}</td> -->
+                <td>
+                    {% if not name.country %}
+                    -
+                    {% else %}
+                    {{ name.country }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if not name.meaning  %}
+                    -
+                    {% else %}
+                    {{ name.meaning }}
+                    {% endif %}
+                </td>
+            </tr>
+            
+            {% endfor %}
+
+   
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center mt-4">
+            {% if has_previous %}
+                 <li class="page-item ">
+                <a class="page-link" href="?page=1&desteni_number={{ desteni_number }}&motivation_number={{ motivation_number }}&gender={{ gender }}" tabindex="-1" aria-disabled="true">صفحه اول</a>
+                </li>
+                <li class="page-item ">
+                <a class="page-link" href="?page={{ page|add:-1 }}&desteni_number={{ desteni_number }}&motivation_number={{ motivation_number }}&gender={{ gender }}" tabindex="-1" aria-disabled="true">قبلی</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page|add:-1 }}&desteni_number={{ desteni_number }}&motivation_number={{ motivation_number }}&gender={{ gender }}">
+                        {{ page|add:-1 }}
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">قبلی</a>
+                </li>
+            {% endif %}
+
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        {{ page }}
+                    </a>
+                </li>
+                
+                {% if has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page|add:1 }}&desteni_number={{ desteni_number }}&motivation_number={{ motivation_number }}&gender={{ gender }}">
+                        {{ page|add:1 }}
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page|add:1 }}&desteni_number={{ desteni_number }}&motivation_number={{ motivation_number }}&gender={{ gender }}">بعدی</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ num_pages }}&desteni_number={{ desteni_number }}&motivation_number={{ motivation_number }}&gender={{ gender }}">صفحه آخر</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">بعدی</a>
+                </li>
+            {% endif %}
+        </ul>
+      </nav>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>

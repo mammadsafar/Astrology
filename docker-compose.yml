@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  # frontend:
+  #   container_name: frontend
+  #   build: ./frontend # the path to your React project folder
+  #   ports:
+  #     - "3000:3000" # expose port 3000 for the React app
+  #   volumes:
+  #     - ./frontend:/app # mount the frontend folder as a volume
+  #   depends_on:
+  #     - backend  # make sure the backend service is running before the frontend
+  #     - redis
+
+  backend:
+    container_name: backend
+    build: ./backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=test
+      - DEBUG=true
+
+  smtp4dev:
+    image: rnwood/smtp4dev:v3
+    restart: always
+    ports:
+      # Change the number before : to the port the web interface should be accessible on
+      - "5000:80"
+      # Change the number before : to the port the SMTP server should be accessible on
+      - "25:25"
+      # Change the number before : to the port the IMAP server should be accessible on
+      - "143:143"
+    volumes:
+      # This is where smtp4dev stores the database..
+      - smtp4dev-data:/smtp4dev
+    environment:
+      - ServerOptions__HostName=smtp4dev
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  smtp4dev-data:
+  redis_data:

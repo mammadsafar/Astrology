@@ -1,0 +1,28 @@
+<!-- chat/templates/chat/index.html -->
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="utf-8"/>
+    <title>Astro Chart</title>
+</head>
+<body>
+
+ {% for plant in data.plants %}
+     <h3>{{ plant.plant }}</h3>
+     <img class="svg" src="{{ plant.image }}">
+  <p>{{ plant.description.name}}</p>
+  <p>{{ plant.description.description|striptags}}</p>
+     <br>
+ {% endfor %}
+
+
+ <img class="svg" src="{{ svg }}">
+
+</body>
+<script>
+    // var svg = document.querySelector('.svg')
+    // svg.src ='{{ svg }}';
+
+
+</script>
+</html>

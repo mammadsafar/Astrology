@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Data</title>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+
+</head>
+<body>
+    <form id="user-form" action="" method="post">
+
+        {% csrf_token %}
+
+        <label for="first-name">Name:</label>
+        <input type="text" id="first-name" name="name"><br><br>
+        <label for="last-name">Birth Day:</label>
+        <input type="date" id="last-name" name="birthday"><br><br>
+        <label for="last-name">Birth time:</label>
+        <input type="time" id="last-name" name="time"><br><br>
+        <!-- <label for="last-name">City:</label>
+        <input type="text" id="last-name" name="city"><br><br> -->
+        <label for="last-name">City:</label>
+        
+        <!-- <select name="city" tabindex="15" data-gtm-form-interact-field-id="0"> -->
+            <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="city">
+                <option value="">لطفا محل تولد خود را وارد کنید</option>
+                {% for item in city %}
+                <option value="{{ item.id }}">{{ item }}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <input type="submit" id="last-name" name="submit"><br><br>
+              
+    </form>
+    <!-- <div id="map"></div> -->
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
+</body>
+</html>
