@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "mail_templated",
 
 
+    # 'django_ratelimit',
 
     # Local apps
     "chart",

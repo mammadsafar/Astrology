@@ -11,6 +11,8 @@ from pathlib import Path
 import csv
 import json
 
+# from django_ratelimit.decorators import ratelimit
+
 from .models import Name
 from .moduls import moduls
 
@@ -120,7 +122,7 @@ def change_data(request):
 
 
 
-
+# @ratelimit(key='ip', rate='10000/h', method='ALL', block=True)
 def names_list(request):
     if request.method == 'GET':
         desteni_number = request.GET.get('desteni_number', 1)
@@ -138,7 +140,6 @@ def names_list(request):
         
         # Create a Paginator object with the results and the desired number of items per page
         paginator = Paginator(results, 10)  # 100 items per page
-
         # Get the paginated page
         page_obj = paginator.get_page(page_number)
 

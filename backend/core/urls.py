@@ -44,6 +44,8 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
 
     path('accounts/', include('django.contrib.auth.urls')),
+
+
     # path('api-auth/', include('rest_framework.urls')),
     # path("blog/", include("blog.urls")),
     # path("chat/", include("chat.urls")),
@@ -72,9 +74,9 @@ urlpatterns = [
 
     path('ckeditor/', include('ckeditor_uploader.urls')),
 
-    path('chart/', include('chart.urls')),
+    # path('chart/', include('chart.urls')),
+    # path('load_data/', include('city.urls')),
     path('names/', include('names.urls')),
-    path('load_data/', include('city.urls')),
 ]
 
 
