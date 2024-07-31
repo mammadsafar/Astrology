@@ -1,4 +1,5 @@
 # backend/static
+backend/media/chart/svg/
 frontend/node_modules
 frontend/.next
 

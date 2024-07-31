@@ -29,9 +29,12 @@ DEBUG = config("DEBUG", cast=bool)
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
     cast=lambda v: [s.strip() for s in v.split(",")],
-    default="*",
+    default="ferdat.ir,www.ferdat.ir",
 )
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://ferdar.ir'
+    'https://www.ferdar.ir'
+]
 # Application definition
 
 INSTALLED_APPS = [
