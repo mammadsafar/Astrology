@@ -6,6 +6,6 @@ from .views import names_list
 urlpatterns = [
     # path("import", import_data, name='import_data' ),
     # path("change_data", change_data, name='change_data' ),
-    path("list", names_list, name='names_list' ),
+    path("list/", names_list, name='names_list' ),
     # path("form", name_form, name='name_form' ),
 ] 

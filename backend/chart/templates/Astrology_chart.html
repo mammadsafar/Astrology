@@ -1,28 +1,159 @@
-<!-- chat/templates/chat/index.html -->
+
 <!DOCTYPE html>
-<html dir="rtl">
+<html lang="en" dir="rtl">
 <head>
-    <meta charset="utf-8"/>
-    <title>Astro Chart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دانلود و تحلیل چارت</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+body {
+  background: #fafbfb;
+}
+
+
+/* FOOTER STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-footer {
+  position: fixed;
+  right: 0;
+  bottom: 50px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  z-index: 1;
+}
+
+.page-footer a {
+  display: flex;
+  margin-left: 4px;
+}
+
+.table__head{
+color: #FFF;
+font-weight: 700;
+background: #9b4085;
+background: -moz-linear-gradient(-45deg, #9b4085 0%, #608590 100%);
+background: -webkit-linear-gradient(-45deg, #9b4085 0%,#608590 100%);
+background: linear-gradient(135deg, #9b4085 0%,#608590 100%);
+white-space: nowrap;
+}
+.table-bordered td, .table-bordered th{
+border: 0px solid #FFF;
+}
+.coin {
+width:8%;
+margin-left: 5px;
+-webkit-animation:spin 4s linear infinite;
+-moz-animation:spin 4s linear infinite;
+animation:spin 4s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.winner__table{
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 567px) {
+
+    .winner__table{
+    font-size: 12px;
+    }
+    .coin {
+    width:15%;
+    margin-left:2px;
+    }
+}
+.rtl-text {
+    text-align: right;
+    direction: rtl;
+  }
+</style>
 </head>
 <body>
 
- {% for plant in data.plants %}
-     <h3>{{ plant.plant }}</h3>
-     <img class="svg" src="{{ plant.image }}">
-  <p>{{ plant.description.name}}</p>
-  <p>{{ plant.description.description|striptags}}</p>
-     <br>
- {% endfor %}
 
 
- <img class="svg" src="{{ svg }}">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+
+
+
+  <div class="container">
+      <div class="table-responsive">
+      <table class="table table-bordered   table-striped" style="margin-top:50px">
+        <thead class="table__head">
+          <tr class="winner__table">
+            <!-- <th class="rtl-text">سیاره</th> -->
+            <th class="rtl-text">تصویر سیاره</th>
+            <!-- <th>جنسیت</th> -->
+            <!-- <th class="rtl-text">زودیاک</th> -->
+            <th class="rtl-text">تصویر زودیاک</th>
+            <th class="rtl-text">تحلیل</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for plant in data.plants %}
+
+
+                <tr class="winner__table">
+                    <!-- <td>{{ plant.plant }}</td> -->
+                    <td>
+                        <img class="svg" src="{{ plant.p_image }}">
+                    </td>
+                    <!-- <td>{{ plant.zodiac }}</td> -->
+                    <td>
+                        <img class="svg" src="{{ plant.z_image }}">
+                    </td>
+                    <td class="rtl-text">
+                        {{ plant.description.description|safe }}
+                    </td>
+                </tr>
+            {% endfor %}
+
+           
+
+   
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div style="text-align: center;" class="mb-3">
+        <!-- دکمه دانلود -->
+        <button onclick="downloadSVG()" class="btn btn-dark w-10 fw-bold">دانلود چارت</button>
+        <br>
+        <!-- تصویر SVG با ابعاد 100 در 100 پیکسل -->
+        <img id="svgImage" src="{{ svg }}" width="500" height="500" alt="SVG Image">
+        
+    </div>
+   
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+<script>
+    function downloadSVG() {
+        const link = document.createElement('a');
+        link.href = document.getElementById('svgImage').src;
+        link.download = 'Astrology_chart.svg';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
 
 </body>
-<script>
-    // var svg = document.querySelector('.svg')
-    // svg.src ='{{ svg }}';
-
-
-</script>
 </html>

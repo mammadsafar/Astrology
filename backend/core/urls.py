@@ -72,19 +72,25 @@ urlpatterns = [
     # ),
 # path("", include("apps.sample.urls")),
 
+    path('', include('pages.urls')),
+
     path('ckeditor/', include('ckeditor_uploader.urls')),
 
-    # path('chart/', include('chart.urls')),
+    path('chart/', include('chart.urls')),
     # path('load_data/', include('city.urls')),
     path('names/', include('names.urls')),
-]
+] + static(
+        settings.STATIC_URL, document_root=settings.STATIC_ROOT
+    )+static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )
 
 
 #  serving static and media for development
-if settings.DEBUG:
-    urlpatterns += static(
-        settings.STATIC_URL, document_root=settings.STATIC_ROOT
-    )
-    urlpatterns += static(
-        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
-    )
+# if settings.DEBUG:
+#     urlpatterns += static(
+#         settings.STATIC_URL, document_root=settings.STATIC_ROOT
+#     )
+#     urlpatterns += static(
+#         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+#     )

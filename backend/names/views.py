@@ -125,21 +125,31 @@ def change_data(request):
 # @ratelimit(key='ip', rate='10000/h', method='ALL', block=True)
 def names_list(request):
     if request.method == 'GET':
-        desteni_number = request.GET.get('desteni_number', 1)
-        motivation_number = request.GET.get('motivation_number', 1)
-        gender = request.GET.get('gender', 'boy')
+        valid_desteni_number = request.GET.get('desteni_number', 1)
+        valid_motivation_number = request.GET.get('motivation_number', 1)
+        valid_gender = request.GET.get('gender', 'both')
         
-        results = Name.objects.filter(
-            desteni_number=desteni_number,
-            motivation_number=motivation_number,
-            gender=gender
-        ).order_by('-created_at')
+        query = {}
+        if valid_desteni_number != 'False':
+            query['desteni_number'] = valid_desteni_number
+        if valid_motivation_number != 'False':
+            query['motivation_number'] = valid_motivation_number
+        if valid_gender != 'both':
+            query['gender'] = valid_gender
+
+        results = Name.objects.filter(**query).order_by('-created_at')
+        count = results.count()
+        # results = Name.objects.filter(
+        #     desteni_number=desteni_number,
+        #     motivation_number=motivation_number,
+        #     gender=gender
+        # ).order_by('-created_at')
 
         # Get the page number from the query parameters
         page_number = request.GET.get('page', 1)
         
         # Create a Paginator object with the results and the desired number of items per page
-        paginator = Paginator(results, 10)  # 100 items per page
+        paginator = Paginator(results, 100)  # 100 items per page
         # Get the paginated page
         page_obj = paginator.get_page(page_number)
 
@@ -148,16 +158,17 @@ def names_list(request):
 
         # Return the paginated results along with pagination info
         response_data = {
-            'desteni_number': desteni_number,
-            'motivation_number': motivation_number,
-            'gender': gender,
+            'desteni_number': valid_desteni_number,
+            'motivation_number': valid_motivation_number,
+            'gender': valid_gender,
             'results': results_list,
+            'count': count,
             'page': page_obj.number,
             'num_pages': paginator.num_pages,
             'has_next': page_obj.has_next(),
             'has_previous': page_obj.has_previous(),
         }
-        print(response_data)
+        # print(response_data)
         # return JsonResponse(response_data, safe=False)
 
         return render(request, 'names_list.html', response_data)

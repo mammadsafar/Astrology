@@ -1,4 +1,4 @@
-backend/static
+# backend/static
 frontend/node_modules
 frontend/.next
 

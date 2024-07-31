@@ -72,7 +72,9 @@ def get_chart(request):
                     # print(data_detail)
                     astro_chart_data = dict()
                     astro_chart_data['plant'] = astro_obj.name
-                    astro_chart_data['image'] = plant.image.url
+                    astro_chart_data['p_image'] = plant.image.url
+                    astro_chart_data['zodiac'] = zodiac.nationalName
+                    astro_chart_data['z_image'] = zodiac.image.url
                     astro_chart_data['description'] = data_detail
                     data['plants'].append(astro_chart_data)
 
@@ -80,6 +82,7 @@ def get_chart(request):
                 # print(e)
                 continue
         svg_path = '/media/chart/svg/' + name + ' - Natal Chart.svg'
+        print({'data': data, 'svg': svg_path})
         return render(request, "Astrology_chart.html", {'data': data, 'svg': svg_path})
 
 
